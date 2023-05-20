@@ -59,7 +59,7 @@ class GetVKToken(APIView):
 
         js_code = (
             f"const nextParam = window.localStorage.getItem('nextParam');"
-            f"const redirUrl = '/{front_redirect_url}';"
+            f"const redirUrl = '{front_redirect_url}';"
             f"const finalRedirectUrl = nextParam ? nextParam : redirUrl;"
             f"window.localStorage.setItem('access', '{str(access_token)}');"
             f"window.localStorage.setItem('refresh', '{str(refresh_token)}');"
