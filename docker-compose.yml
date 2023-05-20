@@ -1,0 +1,70 @@
+version: '3'
+
+services:
+    db:
+        image: postgis/postgis:latest
+        restart: on-failure
+        ports:
+            - '5436:5432'
+        volumes:
+            - ./dbs/postgres-data:/var/lib/postgresql
+        env_file:
+            - ./.env
+
+    backend:
+        build: ./django_core
+        restart: always
+        expose:
+            - 8000
+        depends_on:
+            - db
+        env_file:
+            - ./.env
+        volumes:
+            - ./django_core:/django_core
+        command: bash -c "
+            python3 manage.py makemigrations &&
+            python3 manage.py migrate &&
+            python3 manage.py collectstatic --noinput &&
+            gunicorn -w 3 django_core.wsgi:application --bind 0.0.0.0:8000 --reload"
+
+    redis:
+        image: redis:alpine
+        restart: always
+        depends_on:
+            - backend
+        expose:
+            - 6379
+        volumes:
+            - ./dbs/redis-data:/data/
+
+#    celery:
+#        build: ./django_core
+#        restart: always
+#        volumes:
+#            - ./django_core:/django_core
+#        env_file:
+#            - ./.env
+#        depends_on:
+#            - redis
+#        command: celery -A django_core worker -l DEBUG -c 3
+#
+#    flower:
+#        image: mher/flower
+#        restart: always
+#        command: celery flower --persistent=True
+#        ports:
+#            - '5555:5555'
+#        env_file:
+#            - ./.env
+#        depends_on:
+#            - celery
+#        volumes:
+#            - ./django_core:/django_core
+
+    nginx:
+        build: ./nginx
+        ports:
+            - '2222:80'
+        depends_on:
+            - backend

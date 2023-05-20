@@ -1,0 +1,1 @@
+# mapsuvey-django-core
