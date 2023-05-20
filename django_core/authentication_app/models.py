@@ -25,7 +25,7 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
     )
     is_staff = models.BooleanField(
         verbose_name=_("Менеджер"),
-        default=True,
+        default=False,
         help_text="Дает доступ к админке",
     )
     email = models.EmailField(verbose_name=_("Адрес электронной почты"), unique=True)
