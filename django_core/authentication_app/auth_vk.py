@@ -20,7 +20,7 @@ class VKManager:
             for param_name, param_value in settings.VK_MANAGER_CONFIG.items():
                 setattr(cls, param_name, param_value)
 
-            cls.auth_url = f"{cls.base_uri}"
+            cls.auth_url = f"{cls.base_uri}oauth/authorize?"
             cls.obtain_token_url = f"{cls.base_uri}access_token?"
 
         return cls._instance
