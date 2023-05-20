@@ -22,6 +22,7 @@ class UserManager(AuthUserManager):
 
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_email_verified", True)
 
         if extra_fields.get("is_superuser") is not True:

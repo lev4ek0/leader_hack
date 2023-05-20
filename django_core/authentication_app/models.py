@@ -23,6 +23,11 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(
         max_length=15, verbose_name="Номер телефона", blank=True
     )
+    is_staff = models.BooleanField(
+        verbose_name=_("Менеджер"),
+        default=True,
+        help_text="Дает доступ к админке",
+    )
     email = models.EmailField(verbose_name=_("Адрес электронной почты"), unique=True)
     picture = models.ImageField(
         verbose_name=_("Аватар пользователя"),
