@@ -65,6 +65,6 @@ services:
     nginx:
         build: ./nginx
         ports:
-            - '2222:80'
+            - '3333:80'
         depends_on:
             - backend
