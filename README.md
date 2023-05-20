@@ -1,1 +1,1 @@
-# mapsuvey-django-core
+# МосИскусство
