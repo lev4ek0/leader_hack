@@ -51,7 +51,7 @@ class VKManager:
 
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
         response = requests.request(
-            "POST", self.obtain_token_url, headers=headers, data=payload
+            "GET", self.obtain_token_url + payload, headers=headers
         )
         print(response.text)
         resp_json = response.json()
