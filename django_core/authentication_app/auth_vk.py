@@ -53,6 +53,7 @@ class VKManager:
         response = requests.request(
             "POST", self.obtain_token_url, headers=headers, data=payload
         )
+        print(response.text)
         resp_json = response.json()
         return self.get_or_create_user(resp_json.get("access_token"), resp_json.get("email"))
 
