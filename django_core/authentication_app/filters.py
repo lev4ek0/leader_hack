@@ -13,7 +13,6 @@ class UserFilter(django_filters.FilterSet):
         for name in value.split():
             qs = qs.filter(
                 Q(first_name__icontains=name)
-                | Q(middle_name__icontains=name)
                 | Q(last_name__icontains=name)
             )
         return qs

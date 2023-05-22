@@ -16,9 +16,6 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
         verbose_name=_("Токен вк"), max_length=150, blank=True
     )
     first_name = models.CharField(verbose_name=_("Имя"), max_length=150)
-    middle_name = models.CharField(
-        verbose_name=_("Отчество"), max_length=150, blank=True
-    )
     last_name = models.CharField(verbose_name=_("Фамилия"), max_length=150)
     phone_number = models.CharField(
         max_length=15, verbose_name="Номер телефона", blank=True
@@ -48,14 +45,13 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = [
         "first_name",
         "last_name",
-        "middle_name",
     ]
 
     objects = UserManager()
 
     @property
     def full_name(self) -> str:
-        return f"{self.last_name} {self.first_name} {self.middle_name or ''}"
+        return f"{self.last_name} {self.first_name}"
 
     def __str__(self) -> str:
         return str(self.email)

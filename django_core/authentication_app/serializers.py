@@ -24,7 +24,6 @@ class UserListSerializer(serializers.ModelSerializer):
             "id",
             "first_name",
             "last_name",
-            "middle_name",
             "email",
         )
 
@@ -59,7 +58,6 @@ class UserRetrieveSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "first_name",
-            "middle_name",
             "phone_number",
             "last_name",
             "email",
@@ -72,7 +70,6 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "first_name",
-            "middle_name",
             "last_name",
             "phone_number",
         )
