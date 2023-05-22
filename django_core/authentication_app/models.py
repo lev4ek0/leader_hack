@@ -12,15 +12,15 @@ from utils.basemodel import BaseModel
 
 class User(BaseModel, AbstractBaseUser, PermissionsMixin):
     vk = models.CharField(
-        verbose_name=_("Идентификатор vk"), max_length=150, blank=True
+        verbose_name=_("Идентификатор vk"), max_length=150, null=True
     )
     vk_access_token = models.CharField(
-        verbose_name=_("Токен вк"), max_length=255, blank=True
+        verbose_name=_("Токен вк"), max_length=255, null=True
     )
     first_name = models.CharField(verbose_name=_("Имя"), max_length=150)
     last_name = models.CharField(verbose_name=_("Фамилия"), max_length=150)
     phone_number = models.CharField(
-        max_length=15, verbose_name="Номер телефона", blank=True
+        max_length=15, verbose_name="Номер телефона", null=True
     )
     is_staff = models.BooleanField(
         verbose_name=_("Менеджер"),
