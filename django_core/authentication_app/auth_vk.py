@@ -70,7 +70,7 @@ class VKManager:
         user = User.objects.create(
             vk=vk_id,
             email=email,
-            access_token=access_token,
+            vk_access_token=access_token,
             first_name=first_name,
             last_name=last_name,
             is_email_verified=True,
