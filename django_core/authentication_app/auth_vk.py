@@ -2,6 +2,7 @@ import jwt
 import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from rest_framework.exceptions import NotFound
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from authentication_app.tasks import handle_user_avatar
@@ -66,7 +67,8 @@ class VKManager:
             user_data.get("email"),
             user_data.get("user_id"),
         )
-
+        if not access_token:
+            raise NotFound(detail="Попробуйте еще раз", code=404)
         user = User.objects.create(
             vk=vk_id,
             email=email,
