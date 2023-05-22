@@ -31,17 +31,9 @@ class RedirectVK(APIView):
 
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request: Request) -> HttpResponseRedirect:
+    def get(self, request: Request) -> Response:
         vk_manager = VKManager()
-
-        next_param = request.GET.get("next", "")
-
-        js_code = (
-            f"window.localStorage.setItem('nextParam', '{next_param}');"
-            f"window.location = '{vk_manager.obtain_auth_url()}'"
-        )
-
-        return HttpResponse(f"<script>{js_code}</script>")
+        return Response({"link": vk_manager.obtain_auth_url()}, status=status.HTTP_200_OK)
 
 
 class GetVKToken(APIView):
@@ -55,18 +47,7 @@ class GetVKToken(APIView):
         vk_manager = VKManager()
         refresh_token, access_token = vk_manager.authorize(code)
 
-        front_redirect_url = settings.BASE_URL
-
-        js_code = (
-            f"const nextParam = window.localStorage.getItem('nextParam');"
-            f"const redirUrl = '{front_redirect_url}';"
-            f"const finalRedirectUrl = nextParam ? nextParam : redirUrl;"
-            f"window.localStorage.setItem('access', '{str(access_token)}');"
-            f"window.localStorage.setItem('refresh', '{str(refresh_token)}');"
-            f"window.location = finalRedirectUrl;"
-        )
-
-        return HttpResponse(f"<script>{js_code}</script>")
+        return Response({"access": str(access_token), "refresh": str(refresh_token)})
 
 
 class BlacklistTokenView(TokenViewBase):
