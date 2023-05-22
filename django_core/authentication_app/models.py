@@ -1,3 +1,5 @@
+from django.contrib.gis.db.models import PointField
+
 from authentication_app.managers import UserManager
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -13,7 +15,7 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
         verbose_name=_("Идентификатор vk"), max_length=150, blank=True
     )
     vk_access_token = models.CharField(
-        verbose_name=_("Токен вк"), max_length=150, blank=True
+        verbose_name=_("Токен вк"), max_length=255, blank=True
     )
     first_name = models.CharField(verbose_name=_("Имя"), max_length=150)
     last_name = models.CharField(verbose_name=_("Фамилия"), max_length=150)
