@@ -64,7 +64,7 @@ class VKManager:
             user_data.get("last_name"),
             user_data.get("access_token"),
             user_data.get("email"),
-            user_data.get("vk_id"),
+            user_data.get("user_id"),
         )
 
         user = User.objects.create(
