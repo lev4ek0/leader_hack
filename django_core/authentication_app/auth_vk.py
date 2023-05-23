@@ -2,6 +2,7 @@ import jwt
 import requests
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 from rest_framework.exceptions import NotFound
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -94,7 +95,7 @@ class VKManager:
         user_data['access_token'] = access_token
         user_data['email'] = email
         user = User.objects.filter(
-            email=email
+            Q(vk=user_data.get('user_id')) | Q(email=email)
         ).first()
         if not user:
             user = self.create_user(user_data=user_data)

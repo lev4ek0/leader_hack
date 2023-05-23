@@ -27,7 +27,7 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
         default=False,
         help_text="Дает доступ к админке",
     )
-    email = models.EmailField(verbose_name=_("Адрес электронной почты"), unique=True)
+    email = models.EmailField(verbose_name=_("Адрес электронной почты"), unique=True, null=True)
     picture = models.ImageField(
         verbose_name=_("Аватар пользователя"),
         upload_to="avatars/%Y/%m/%d/",
