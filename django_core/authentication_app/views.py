@@ -47,7 +47,7 @@ class GetVKToken(APIView):
         vk_manager = VKManager()
         refresh_token, access_token = vk_manager.authorize(code)
 
-        return HttpResponseRedirect(f"/auth/oauth2/vk/?access={access_token}&refresh{refresh_token}")
+        return HttpResponseRedirect(f"/auth/oauth2/vk/?access={access_token}&refresh={refresh_token}")
 
 
 class BlacklistTokenView(TokenViewBase):
