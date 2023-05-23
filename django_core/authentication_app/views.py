@@ -41,13 +41,13 @@ class GetVKToken(APIView):
 
     permission_classes = [permissions.AllowAny]
 
-    def get(self, request: Request) -> Response:
+    def get(self, request: Request) -> HttpResponseRedirect:
         code = request.GET.get("code")
 
         vk_manager = VKManager()
         refresh_token, access_token = vk_manager.authorize(code)
 
-        return Response({"access": str(access_token), "refresh": str(refresh_token)})
+        return HttpResponseRedirect(f"/auth/oauth2/vk/?access={access_token}&refresh{refresh_token}")
 
 
 class BlacklistTokenView(TokenViewBase):
