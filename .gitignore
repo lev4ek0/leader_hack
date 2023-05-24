@@ -34,3 +34,6 @@ debug.log
 # static/media
 /django_core/static/
 /django_core/media/
+
+.venv
+migrations/

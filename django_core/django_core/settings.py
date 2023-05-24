@@ -152,16 +152,16 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-VK_MANAGER_CONFIG = {
-    "client_id": env.str("VK_CLIENT_ID"),
-    "response_type": env.str("VK_RESPONSE_TYPE"),
-    "base_uri": env.str("VK_BASE_URI"),
-    "redirect_uri": env.str("VK_REDIRECT_URI"),
-    "scope": env.str("VK_SCOPE"),
-    "grant_type": env.str("VK_GRANT_TYPE"),
-    "client_secret": env.str("VK_CLIENT_SECRET"),
-}
+if env.bool("VK_MANAGER_ENABLED", default=False):
+    VK_MANAGER_CONFIG = {
+        "client_id": env.str("VK_CLIENT_ID"),
+        "response_type": env.str("VK_RESPONSE_TYPE"),
+        "base_uri": env.str("VK_BASE_URI"),
+        "redirect_uri": env.str("VK_REDIRECT_URI"),
+        "scope": env.str("VK_SCOPE"),
+        "grant_type": env.str("VK_GRANT_TYPE"),
+        "client_secret": env.str("VK_CLIENT_SECRET"),
+    }
 
 BASE_URL = env.str("BASE_URL", "http://localhost")
 REDIS_HOST = env.str("REDIS_HOST", "redis")
