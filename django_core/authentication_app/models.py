@@ -1,12 +1,11 @@
-from django.contrib.gis.db.models import PointField
-
-from authentication_app.managers import UserManager
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.contrib.gis.db.models import PointField
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext as _
 
+from authentication_app.managers import UserManager
 from utils.basemodel import BaseModel
 
 

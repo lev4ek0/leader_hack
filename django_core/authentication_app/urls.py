@@ -1,12 +1,9 @@
-from authentication_app.views import (
-    BlacklistTokenView,
-    CustomUserViewSet,
-    GetVKToken,
-    RedirectVK,
-    TokenRefreshViewWithBlacklist,
-)
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
+
+from authentication_app.views import (BlacklistTokenView, CustomUserViewSet,
+                                      GetVKToken, RedirectVK,
+                                      TokenRefreshViewWithBlacklist)
 
 app_name = "authentication_app"
 

@@ -1,13 +1,3 @@
-from authentication_app.auth_vk import VKManager
-from authentication_app.filters import UserFilter
-
-from authentication_app.serializers import (
-    TokenBlacklistSerializer,
-    TokenRefreshSerializerWithBlacklist,
-    UserListSerializer,
-    UserRetrieveSerializer,
-    UserUpdateSerializer,
-)
 from django.conf import settings
 from django.core.cache import caches
 from django.http import HttpResponse, HttpResponseRedirect
@@ -20,6 +10,12 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.views import TokenViewBase
+
+from authentication_app.auth_vk import VKManager
+from authentication_app.filters import UserFilter
+from authentication_app.serializers import (
+    TokenBlacklistSerializer, TokenRefreshSerializerWithBlacklist,
+    UserListSerializer, UserRetrieveSerializer, UserUpdateSerializer)
 
 cache = caches["blacklist"]
 

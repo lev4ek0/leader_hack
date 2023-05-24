@@ -4,7 +4,6 @@ from django.contrib.auth import get_user_model
 from django.core.cache import caches
 from django.test import Client, TestCase
 
-
 User = get_user_model()
 
 cache = caches["blacklist"]

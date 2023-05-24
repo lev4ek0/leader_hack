@@ -8,7 +8,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from authentication_app.tasks import handle_user_avatar
 
-
 User = get_user_model()
 
 

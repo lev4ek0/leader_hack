@@ -1,8 +1,8 @@
 from tempfile import NamedTemporaryFile
 from urllib.request import urlopen
 
-from django.core.files import File
 from django.contrib.auth import get_user_model
+from django.core.files import File
 
 # from django_core.celery import app
 

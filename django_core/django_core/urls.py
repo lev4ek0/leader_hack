@@ -18,11 +18,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
-from django.urls import path, include
+from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
+
 def aboutview(request):
-    return render(request,"home.html")
+    return render(request, "home.html")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -37,8 +39,12 @@ urlpatterns = [
                         namespace="authentication_app",
                     ),
                 ),
+                path(
+                    "quizz/",
+                    include("quizzes.urls"),
+                ),
             ]
-        )
+        ),
     ),
     path(
         "schema/",
@@ -50,8 +56,5 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
     ),
-    path(
-        "auth/oauth2/vk/",
-        aboutview
-    )
+    path("auth/oauth2/vk/", aboutview),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

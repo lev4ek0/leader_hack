@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from pathlib import Path
-
+from datetime import timedelta
 import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -53,9 +53,7 @@ THIRD_PARTY_APPS = [
     "django_filters",
 ]
 
-LOCAL_APPS = [
-    "authentication_app"
-]
+LOCAL_APPS = ["authentication_app", "quizzes"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -152,7 +150,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-if env.bool("VK_MANAGER_ENABLED", default=False):
+if env.bool("VK_MANAGER_ENABLED", default=True):
     VK_MANAGER_CONFIG = {
         "client_id": env.str("VK_CLIENT_ID"),
         "response_type": env.str("VK_RESPONSE_TYPE"),
@@ -204,3 +202,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:1337",
     "https://lev4ek.ru",
 ]
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=365),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=366),
+}

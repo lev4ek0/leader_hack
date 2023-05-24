@@ -5,7 +5,6 @@ from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
-
 User = get_user_model()
 cache = caches["blacklist"]
 
